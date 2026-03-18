@@ -201,7 +201,7 @@ function renderProducts(products) {
         ${imageHtml}
         <div class="card-body">
           <h3 class="card-name">${escHtml(p.name)}</h3>
-          ${p.description ? `<p class="card-description">${escHtml(p.description)}</p>` : ""}
+          ${p.description ? `<p class="card-description">${escHtml(p.description.replace(/<[^>]+>/g, " ").replace(/\s{2,}/g, " ").trim())}</p>` : ""}
           ${metaParts.length ? `<div class="card-meta">${metaParts.join("")}</div>` : ""}
           ${priceStr ? `<p class="price">${escHtml(priceStr)}<span class="price-from">from</span></p>` : ""}
           ${tagsHtml}
@@ -312,7 +312,11 @@ async function init() {
   renderSkeletons(6);
 
   try {
-    const products = await callTool("get_products");
+    const BOOKING_TYPES = new Set([
+      "sessionpass", "package", "partypackage", "pass", "recurringpass",
+    ]);
+    const all = await callTool("get_products");
+    const products = all.filter((p) => BOOKING_TYPES.has(p.type));
     renderProducts(products);
   } catch (err) {
     renderError(err.message);
