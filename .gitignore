@@ -1,0 +1,6 @@
+.env.local
+.env
+node_modules/
+.supabase/
+supabase/.branches/
+supabase/migrations/
