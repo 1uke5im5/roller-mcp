@@ -26,8 +26,8 @@ async function getAccessToken(): Promise<string> {
 
   const res = await fetch("https://api.play.roller.app/token", {
     method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
       grant_type: "client_credentials",
       client_id: clientId,
       client_secret: clientSecret,
