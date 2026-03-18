@@ -4,7 +4,7 @@
   "name": "Roller Booking MCP",
   "description": "MCP server for the Roller entertainment booking platform. Exposes product listings and availability for RollerBN.",
   "version": "1.0.0",
-  "endpoint": "https://<your-project>.supabase.co/functions/v1/roller-mcp/mcp",
+  "endpoint": "https://dtpvxwtcedeiqnpvrlxg.supabase.co/functions/v1/roller-mcp/mcp",
   "transport": "streamable-http",
   "authentication": {
     "type": "apikey",

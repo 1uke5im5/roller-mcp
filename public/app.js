@@ -10,7 +10,7 @@
 // ---------------------------------------------------------------------------
 const MCP_URL =
   (window.ROLLER_MCP_URL) ||
-  "https://<your-project>.supabase.co/functions/v1/roller-mcp/mcp";
+  "https://dtpvxwtcedeiqnpvrlxg.supabase.co/functions/v1/roller-mcp/mcp";
 
 // ---------------------------------------------------------------------------
 // JSON-RPC 2.0 over MCP Streamable HTTP
