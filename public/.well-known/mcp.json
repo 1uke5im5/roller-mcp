@@ -1,0 +1,81 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schema/mcp-manifest/v1",
+  "schema_version": "1.0",
+  "name": "Roller Booking MCP",
+  "description": "MCP server for the Roller entertainment booking platform. Exposes product listings and availability for RollerBN.",
+  "version": "1.0.0",
+  "endpoint": "https://dtpvxwtcedeiqnpvrlxg.supabase.co/functions/v1/roller-mcp/mcp",
+  "transport": "streamable-http",
+  "authentication": {
+    "type": "apikey",
+    "header": "X-API-Key",
+    "description": "Pass your Supabase anon key (or custom API key) in the X-API-Key header"
+  },
+  "rate_limits": {
+    "requests_per_minute": 60,
+    "requests_per_day": 5000
+  },
+  "tools": [
+    {
+      "name": "get_products",
+      "description": "Lists all bookable products from the Roller platform. Returns id, name, type, description, image_url, duration (minutes), tags, and variations (with price in cents, tax, groupSize, locations).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    },
+    {
+      "name": "get_product_availability",
+      "description": "Checks availability for a specific Roller product on a given date or date range. Returns available time slots and capacity information.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string",
+            "description": "The Roller product ID to check availability for"
+          },
+          "date": {
+            "type": "string",
+            "description": "Start date in YYYY-MM-DD format"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Optional end date in YYYY-MM-DD format for a range query"
+          }
+        },
+        "required": ["productId", "date"]
+      }
+    }
+  ],
+  "examples": [
+    {
+      "query": "What activities are available at RollerBN?",
+      "tool": "get_products",
+      "description": "List all bookable experiences"
+    },
+    {
+      "query": "Show me things to do at RollerBN this weekend",
+      "tool": "get_products",
+      "description": "Browse the full product catalogue"
+    },
+    {
+      "query": "Is there availability for laser tag on Saturday?",
+      "tool": "get_product_availability",
+      "description": "Check specific product availability for a given date"
+    },
+    {
+      "query": "What time slots are available for mini golf next Friday?",
+      "tool": "get_product_availability",
+      "description": "Query time slot availability for a specific experience"
+    },
+    {
+      "query": "How much does go-karting cost at RollerBN?",
+      "tool": "get_products",
+      "description": "Fetch product list and inspect variation prices"
+    }
+  ],
+  "contact": {
+    "url": "https://rollerbn.com.au"
+  }
+}

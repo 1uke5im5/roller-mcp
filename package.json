@@ -1,0 +1,14 @@
+{
+  "name": "roller-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for the Roller booking platform — Supabase Edge Function + booking UI",
+  "private": true,
+  "scripts": {
+    "dev": "supabase functions serve roller-mcp --env-file .env.local",
+    "deploy": "supabase functions deploy roller-mcp",
+    "serve": "npx serve public -p 3000"
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "imports": {
+    "hono": "npm:hono@4",
+    "hono/cors": "npm:hono/cors"
+  },
+  "compilerOptions": {
+    "lib": ["deno.window"]
+  }
+}
